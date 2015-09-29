@@ -13,6 +13,24 @@ body{
 }
 
 /*********************************************/
+/************* Header Styling *************/
+/*********************************************/
+
+header{
+	border-bottom: .3em solid black;
+}
+
+header h1{
+	margin-top: 0;
+	text-align: center;
+}
+
+header h2{
+	margin-bottom: 0;
+	font-size: 100%;
+	text-align: center;
+}
+/*********************************************/
 /************* Selection Section *************/
 /*********************************************/
 .selection{
@@ -21,6 +39,7 @@ body{
 
 .choice:hover{
 	cursor: pointer;
+	outline: .1em solid cornflowerblue;
 }
 
 .choice{
@@ -64,6 +83,8 @@ body{
 
 .battle-computer{
 	/* Flip image on computer side of battlefield */
+	/* Reference: https://css-tricks.com/snippets/css/flip-an-image/ */
+	
 	-moz-transform: scaleX(-1);
     -o-transform: scaleX(-1);
     -webkit-transform: scaleX(-1);
