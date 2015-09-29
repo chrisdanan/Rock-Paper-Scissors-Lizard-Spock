@@ -64,11 +64,27 @@ var randomChoice = function(){
 var battle = function(){
 	"use strict";
 
-	$("#battle-player-" + playerChoice).toggleClass("hidden");
-	$("#battle-computer-" + computerChoice).toggleClass("hidden");
+	var outcome = "";
 
-	$("#battle-player-" + playerChoice).addClass("show-image");
-	$("#battle-computer-" + computerChoice).addClass("show-image");
+	var timeout = window.setTimeout(function(){
+		$("#battle-player-" + playerChoice).toggleClass("hidden");
+		$("#battle-player-" + playerChoice).addClass("show-image");
+
+		var timeout2 = window.setTimeout(function(){
+			$("#battle-computer-" + computerChoice).toggleClass("hidden");
+			$("#battle-computer-" + computerChoice).addClass("show-image");
+
+			var timeout3 = window.setTimeout(function(){
+				outcome = winner();
+				showOutcome(outcome);
+			}, 750);
+		}, 500);
+	}, 0);
+	//$("#battle-player-" + playerChoice).toggleClass("hidden");
+	//$("#battle-computer-" + computerChoice).toggleClass("hidden");
+
+	//$("#battle-player-" + playerChoice).addClass("show-image");
+	//$("#battle-computer-" + computerChoice).addClass("show-image");
 };
 
 /*************
@@ -198,8 +214,6 @@ var main = function(){
 		$lizard = $("#lizard-choice"),
 		$spock = $("#spock-choice");
 
-	var outcome = "";
-
 	$rock.on("click", function(){
 		console.log("Player Choice: rock");
 
@@ -212,8 +226,6 @@ var main = function(){
 		randomChoice();
 		$("#versus-statement p").text(playerChoice + " vs " + computerChoice);
 		battle();
-		outcome = winner();
-		showOutcome(outcome);
 		
 	});
 
@@ -229,8 +241,6 @@ var main = function(){
 		randomChoice();
 		$("#versus-statement p").text(playerChoice + " vs " + computerChoice);
 		battle();
-		outcome = winner();
-		showOutcome(outcome);
 	});
 
 	$scissors.on("click", function(){
@@ -245,8 +255,6 @@ var main = function(){
 		randomChoice();
 		$("#versus-statement p").text(playerChoice + " vs " + computerChoice);
 		battle();
-		outcome = winner();
-		showOutcome(outcome);
 	});
 
 	$lizard.on("click", function(){
@@ -261,8 +269,6 @@ var main = function(){
 		randomChoice();
 		$("#versus-statement p").text(playerChoice + " vs " + computerChoice);
 		battle();
-		outcome = winner();
-		showOutcome(outcome);
 	});
 
 	$spock.on("click", function(){
@@ -277,8 +283,6 @@ var main = function(){
 		randomChoice();
 		$("#versus-statement p").text(playerChoice + " vs " + computerChoice);
 		battle();
-		outcome = winner();
-		showOutcome(outcome);
 	});
 };
 
