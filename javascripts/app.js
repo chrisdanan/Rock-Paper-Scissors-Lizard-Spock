@@ -25,6 +25,8 @@ var player_rock_count = 0,
  			-Return a random choice for the computer.
 *************/
 var randomChoice = function(){
+	"use strict";
+
 	//Used to randomly select a choice for the computer.
 	var choices = ["rock", "paper", "scissors", "lizard", "spock"];
 
@@ -59,6 +61,16 @@ var randomChoice = function(){
 	console.log("Computer Choice: " + computerChoice);
 };
 
+var battle = function(){
+	"use strict";
+
+	$("#battle-player-" + playerChoice).toggleClass("hidden");
+	$("#battle-computer-" + computerChoice).toggleClass("hidden");
+
+	$("#battle-player-" + playerChoice).addClass("show-image");
+	$("#battle-computer-" + computerChoice).addClass("show-image");
+};
+
 /*************
  * Purpose: Handle win logic.
  * Input:
@@ -67,6 +79,8 @@ var randomChoice = function(){
  			-Increase number of wins and update text.
 *************/
 var win = function(){
+	"use strict";
+
 	wins++;
 	$("p.wins").text("Wins: " + wins);
 };
@@ -79,6 +93,8 @@ var win = function(){
  			-Increase number of losses and update text.
 *************/
 var loss = function(){
+	"use strict";
+
 	losses++;
 	$("p.losses").text("Losses: " + losses);
 };
@@ -91,6 +107,8 @@ var loss = function(){
  			-return outcome of game: "win", "lose", or "tie".
 *************/
 var winner = function(){
+	"use strict";
+
 	if(playerChoice === computerChoice){
     	ties++;
     	$("p.ties").text("Ties: " + ties);
@@ -143,6 +161,16 @@ var winner = function(){
     }
 };
 
+var cleanUp = function(){
+	"use strict";
+
+	$("#player-side img").addClass("hidden");
+	$("#computer-side img").addClass("hidden");
+
+	$("#player-side img").removeClass("show-image");
+	$("#computer-side img").removeClass("show-image");
+};
+
 var main = function(){
 	"use strict";
 
@@ -157,51 +185,76 @@ var main = function(){
 
 	$rock.on("click", function(){
 		console.log("Player Choice: rock");
+
+		cleanUp();
+
 		playerChoice = "rock";
 		player_rock_count++;
 		$(".player-rock").text("Rock: " + player_rock_count);
 
 		randomChoice();
+		$("#versus-statement p").text(playerChoice + " vs " + computerChoice);
+		battle();
 		winner();
 	});
 
 	$paper.on("click", function(){
 		console.log("Player Choice: paper");
+
+		cleanUp();
+
 		playerChoice = "paper";
 		player_paper_count++;
 		$(".player-paper").text("Paper: " + player_paper_count);
 
 		randomChoice();
+		$("#versus-statement p").text(playerChoice + " vs " + computerChoice);
+		battle();
 		winner();
 	});
 
 	$scissors.on("click", function(){
 		console.log("Player Choice: scissors");
+
+		cleanUp();
+
 		playerChoice = "scissors";
 		player_scissors_count++;
 		$(".player-scissors").text("Scissors: " + player_scissors_count);
 
 		randomChoice();
+		$("#versus-statement p").text(playerChoice + " vs " + computerChoice);
+		battle();
 		winner();
 	});
 
 	$lizard.on("click", function(){
 		console.log("Player Choice: lizard");
+
+		cleanUp();
+
 		playerChoice = "lizard";
 		player_lizard_count++;
 		$(".player-lizard").text("Lizard: " + player_lizard_count);
 
 		randomChoice();
+		$("#versus-statement p").text(playerChoice + " vs " + computerChoice);
+		battle();
 		winner();
 	});
 
 	$spock.on("click", function(){
 		console.log("Player Choice: spock");
+
+		cleanUp();
+
 		playerChoice = "spock";
 		player_spock_count++;
 		$(".player-spock").text("Spock: " + player_spock_count);
 
 		randomChoice();
+		$("#versus-statement p").text(playerChoice + " vs " + computerChoice);
+		battle();
 		winner();
 	});
 };
