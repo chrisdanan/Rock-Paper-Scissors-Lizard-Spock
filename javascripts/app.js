@@ -161,14 +161,29 @@ var winner = function(){
     }
 };
 
+var showOutcome = function(outcome){
+	if(outcome === "win"){
+		$("#outcome-player").append($("<p>").text("WINNER"));
+	} else if(outcome === "lose"){
+		$("#outcome-computer").append($("<p>").text("WINNER"));
+	} else if(outcome === "tie"){
+		$("#outcome-tie").append($("<p>").text("TIE"));
+	}
+};
+
 var cleanUp = function(){
 	"use strict";
 
+	//Make all images hidden.
 	$("#player-side img").addClass("hidden");
 	$("#computer-side img").addClass("hidden");
 
+	//Remove any images which are shown.
 	$("#player-side img").removeClass("show-image");
 	$("#computer-side img").removeClass("show-image");
+
+	//Clear outcome paragraphs.
+	$("#outcome-player, #outcome-tie, #outcome-computer").empty();
 };
 
 var main = function(){
@@ -183,6 +198,8 @@ var main = function(){
 		$lizard = $("#lizard-choice"),
 		$spock = $("#spock-choice");
 
+	var outcome = "";
+
 	$rock.on("click", function(){
 		console.log("Player Choice: rock");
 
@@ -195,7 +212,9 @@ var main = function(){
 		randomChoice();
 		$("#versus-statement p").text(playerChoice + " vs " + computerChoice);
 		battle();
-		winner();
+		outcome = winner();
+		showOutcome(outcome);
+		
 	});
 
 	$paper.on("click", function(){
@@ -210,7 +229,8 @@ var main = function(){
 		randomChoice();
 		$("#versus-statement p").text(playerChoice + " vs " + computerChoice);
 		battle();
-		winner();
+		outcome = winner();
+		showOutcome(outcome);
 	});
 
 	$scissors.on("click", function(){
@@ -225,7 +245,8 @@ var main = function(){
 		randomChoice();
 		$("#versus-statement p").text(playerChoice + " vs " + computerChoice);
 		battle();
-		winner();
+		outcome = winner();
+		showOutcome(outcome);
 	});
 
 	$lizard.on("click", function(){
@@ -240,7 +261,8 @@ var main = function(){
 		randomChoice();
 		$("#versus-statement p").text(playerChoice + " vs " + computerChoice);
 		battle();
-		winner();
+		outcome = winner();
+		showOutcome(outcome);
 	});
 
 	$spock.on("click", function(){
@@ -255,7 +277,8 @@ var main = function(){
 		randomChoice();
 		$("#versus-statement p").text(playerChoice + " vs " + computerChoice);
 		battle();
-		winner();
+		outcome = winner();
+		showOutcome(outcome);
 	});
 };
 
