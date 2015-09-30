@@ -80,6 +80,7 @@ var battle = function(){
 			}, 750);
 		}, 500);
 	}, 0);
+
 	//$("#battle-player-" + playerChoice).toggleClass("hidden");
 	//$("#battle-computer-" + computerChoice).toggleClass("hidden");
 
@@ -179,11 +180,11 @@ var winner = function(){
 
 var showOutcome = function(outcome){
 	if(outcome === "win"){
-		$("#outcome-player").append($("<p>").text("WINNER"));
+		$("#outcome-player").append($("<p>").text("WINNER").addClass("outcome-paragraph"));
 	} else if(outcome === "lose"){
-		$("#outcome-computer").append($("<p>").text("WINNER"));
+		$("#outcome-computer").append($("<p>").text("WINNER").addClass("outcome-paragraph"));
 	} else if(outcome === "tie"){
-		$("#outcome-tie").append($("<p>").text("TIE"));
+		$("#outcome-tie").append($("<p>").text("TIE").addClass("outcome-paragraph"));
 	}
 };
 
