@@ -5,6 +5,16 @@ var wins = 0,			//Number of times player has won.
 	losses = 0,			//Number of times player has lost.
 	ties = 0;			//Number of times player has tied.
 
+//Sound effects.
+var explosion1 = new Audio("assets/explosion.wav");
+explosion1.volume = 0.3;
+var explosion2 = new Audio("assets/explosion.wav");
+explosion2.volume = 0.3;
+var beep = new Audio("assets/beep.wav");
+var cheer = new Audio("assets/cheer.mp3");
+var boocrap = new Audio("assets/boocrap.mp3");
+var dullClap = new Audio("assets/dull_clap.mp3");
+
 //Keep track of the number of times a choice was made by player and computer.
 var player_rock_count = 0,
 	player_paper_count = 0,
@@ -69,23 +79,19 @@ var battle = function(){
 	var timeout = window.setTimeout(function(){
 		$("#battle-player-" + playerChoice).toggleClass("hidden");
 		$("#battle-player-" + playerChoice).addClass("show-image");
+		explosion1.play();
 
 		var timeout2 = window.setTimeout(function(){
 			$("#battle-computer-" + computerChoice).toggleClass("hidden");
 			$("#battle-computer-" + computerChoice).addClass("show-image");
+			explosion2.play();
 
 			var timeout3 = window.setTimeout(function(){
 				outcome = winner();
 				showOutcome(outcome);
 			}, 750);
-		}, 500);
+		}, 600);
 	}, 0);
-
-	//$("#battle-player-" + playerChoice).toggleClass("hidden");
-	//$("#battle-computer-" + computerChoice).toggleClass("hidden");
-
-	//$("#battle-player-" + playerChoice).addClass("show-image");
-	//$("#battle-computer-" + computerChoice).addClass("show-image");
 };
 
 /*************
@@ -98,6 +104,7 @@ var battle = function(){
 var win = function(){
 	"use strict";
 
+	cheer.play();
 	wins++;
 	$("p.wins").text("Wins: " + wins);
 };
@@ -112,6 +119,7 @@ var win = function(){
 var loss = function(){
 	"use strict";
 
+	boocrap.play();
 	losses++;
 	$("p.losses").text("Losses: " + losses);
 };
@@ -127,6 +135,7 @@ var winner = function(){
 	"use strict";
 
 	if(playerChoice === computerChoice){
+		dullClap.play();
     	ties++;
     	$("p.ties").text("Ties: " + ties);
     	return "tie";
@@ -181,8 +190,10 @@ var winner = function(){
 var showOutcome = function(outcome){
 	if(outcome === "win"){
 		$("#outcome-player").append($("<p>").text("WINNER").addClass("outcome-paragraph"));
+		$("#player-side").addClass("winner");
 	} else if(outcome === "lose"){
 		$("#outcome-computer").append($("<p>").text("WINNER").addClass("outcome-paragraph"));
+		$("#computer-side").addClass("winner");
 	} else if(outcome === "tie"){
 		$("#outcome-tie").append($("<p>").text("TIE").addClass("outcome-paragraph"));
 	}
@@ -201,6 +212,18 @@ var cleanUp = function(){
 
 	//Clear outcome paragraphs.
 	$("#outcome-player, #outcome-tie, #outcome-computer").empty();
+
+	//Remove "winner" class.
+	$("#player-side").removeClass("winner");
+	$("#computer-side").removeClass("winner");
+
+	//Stop outcome sound effects.
+	cheer.pause();
+	cheer.currentTime = 0;
+	boocrap.pause();
+	boocrap.currentTime = 0;
+	dullClap.pause();
+	dullClap.currentTime = 0;
 };
 
 var main = function(){
@@ -214,6 +237,13 @@ var main = function(){
 		$scissors = $("#scissors-choice"),
 		$lizard = $("#lizard-choice"),
 		$spock = $("#spock-choice");
+
+	//Play sound effect when mouse hovers over choice.
+	//Reference: http://stackoverflow.com/questions/1933969/sound-effects-in-javascript-html5
+	$(".choice").mouseenter(function(){
+		beep.currentTime = 0;
+		beep.play();
+	});
 
 	$rock.on("click", function(){
 		console.log("Player Choice: rock");
