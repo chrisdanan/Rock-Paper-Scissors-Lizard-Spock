@@ -27,6 +27,20 @@ var player_rock_count = 0,
 	computer_lizard_count = 0,
 	computer_spock_count = 0;
 
+var makeInactive = function(){
+	if($(".selection").hasClass("active")){
+		$(".selection").removeClass("active");
+		$(".selection").addClass("inactive");
+	}
+};
+
+var makeActive = function(){
+	if($(".selection").hasClass("inactive")){
+		$(".selection").removeClass("inactive");
+		$(".selection").addClass("active");
+	}
+};
+
 /*************
  * Purpose: Select a random choice of rock, paper, scissors, lizard, or spock for the computer.
  * Input:
@@ -89,6 +103,8 @@ var battle = function(){
 			var timeout3 = window.setTimeout(function(){
 				outcome = winner();
 				showOutcome(outcome);
+
+				makeActive();
 			}, 750);
 		}, 600);
 	}, 0);
@@ -248,72 +264,93 @@ var main = function(){
 	$rock.on("click", function(){
 		console.log("Player Choice: rock");
 
-		cleanUp();
+		if($(".selection").hasClass("active")){
+			makeInactive();
 
-		playerChoice = "rock";
-		player_rock_count++;
-		$(".player-rock").text("Rock: " + player_rock_count);
+			cleanUp();
 
-		randomChoice();
-		$("#versus-statement p").text(playerChoice + " vs " + computerChoice);
-		battle();
-		
+			makeInactive();
+
+			playerChoice = "rock";
+			player_rock_count++;
+			$(".player-rock").text("Rock: " + player_rock_count);
+
+			randomChoice();
+			$("#versus-statement p").text(playerChoice + " vs " + computerChoice);
+			battle();
+		}
 	});
 
 	$paper.on("click", function(){
 		console.log("Player Choice: paper");
 
-		cleanUp();
+		if($(".selection").hasClass("active")){
+			makeInactive();
 
-		playerChoice = "paper";
-		player_paper_count++;
-		$(".player-paper").text("Paper: " + player_paper_count);
+			cleanUp();
 
-		randomChoice();
-		$("#versus-statement p").text(playerChoice + " vs " + computerChoice);
-		battle();
+			playerChoice = "paper";
+			player_paper_count++;
+			$(".player-paper").text("Paper: " + player_paper_count);
+
+			randomChoice();
+			$("#versus-statement p").text(playerChoice + " vs " + computerChoice);
+			battle();
+		}
 	});
 
 	$scissors.on("click", function(){
 		console.log("Player Choice: scissors");
 
-		cleanUp();
+		if($(".selection").hasClass("active")){
+			makeInactive();
 
-		playerChoice = "scissors";
-		player_scissors_count++;
-		$(".player-scissors").text("Scissors: " + player_scissors_count);
+			cleanUp();
 
-		randomChoice();
-		$("#versus-statement p").text(playerChoice + " vs " + computerChoice);
-		battle();
+			playerChoice = "scissors";
+			player_scissors_count++;
+			$(".player-scissors").text("Scissors: " + player_scissors_count);
+
+			randomChoice();
+			$("#versus-statement p").text(playerChoice + " vs " + computerChoice);
+			battle();
+		}
 	});
 
 	$lizard.on("click", function(){
 		console.log("Player Choice: lizard");
 
-		cleanUp();
+		if($(".selection").hasClass("active")){
+			makeInactive();
 
-		playerChoice = "lizard";
-		player_lizard_count++;
-		$(".player-lizard").text("Lizard: " + player_lizard_count);
+			cleanUp();
 
-		randomChoice();
-		$("#versus-statement p").text(playerChoice + " vs " + computerChoice);
-		battle();
+			playerChoice = "lizard";
+			player_lizard_count++;
+			$(".player-lizard").text("Lizard: " + player_lizard_count);
+
+			randomChoice();
+			$("#versus-statement p").text(playerChoice + " vs " + computerChoice);
+			battle();
+		}
 	});
 
 	$spock.on("click", function(){
 		console.log("Player Choice: spock");
 
-		cleanUp();
+		if($(".selection").hasClass("active")){
+			makeInactive();
 
-		playerChoice = "spock";
-		player_spock_count++;
-		$(".player-spock").text("Spock: " + player_spock_count);
+			cleanUp();
 
-		randomChoice();
-		$("#versus-statement p").text(playerChoice + " vs " + computerChoice);
-		battle();
+			playerChoice = "spock";
+			player_spock_count++;
+			$(".player-spock").text("Spock: " + player_spock_count);
+
+			randomChoice();
+			$("#versus-statement p").text(playerChoice + " vs " + computerChoice);
+			battle();
+		}
 	});
 };
 
