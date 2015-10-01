@@ -53,7 +53,7 @@ header h2 span{
 
 .choice:hover{
 	cursor: pointer;
-	outline: .1em solid cornflowerblue;
+	background: radial-gradient(rgba(253, 255, 51, .3), rgba(253, 255, 51, 0));
 }
 
 .choice{
