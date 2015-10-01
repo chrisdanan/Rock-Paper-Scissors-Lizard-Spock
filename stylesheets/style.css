@@ -141,6 +141,15 @@ header h2 span{
 }
 
 @media(min-width: 750px){
+
+	#outcome-player, #outcome-computer, #outcome-tie{
+		min-height: 100px;
+	}
+
+	.stats{
+		border-top: .25em solid black;
+	}
+
 	.choice{
 	width: 15%;
 	margin-left: 1.5%;
