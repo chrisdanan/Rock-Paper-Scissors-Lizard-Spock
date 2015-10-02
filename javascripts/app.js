@@ -12,6 +12,7 @@ var explosion2 = new Audio("assets/explosion.wav");
 explosion2.volume = 0.3;
 var beep = new Audio("assets/beep.wav");
 var cheer = new Audio("assets/cheer.mp3");
+cheer.volume = 0.1;
 var boocrap = new Audio("assets/boocrap.mp3");
 var dullClap = new Audio("assets/dull_clap.mp3");
 
@@ -90,17 +91,17 @@ var battle = function(){
 
 	var outcome = "";
 
-	var timeout = window.setTimeout(function(){
+	window.setTimeout(function(){
 		$("#battle-player-" + playerChoice).toggleClass("hidden");
 		$("#battle-player-" + playerChoice).addClass("show-image");
 		explosion1.play();
 
-		var timeout2 = window.setTimeout(function(){
+		window.setTimeout(function(){
 			$("#battle-computer-" + computerChoice).toggleClass("hidden");
 			$("#battle-computer-" + computerChoice).addClass("show-image");
 			explosion2.play();
 
-			var timeout3 = window.setTimeout(function(){
+			window.setTimeout(function(){
 				outcome = winner();
 				showOutcome(outcome);
 
