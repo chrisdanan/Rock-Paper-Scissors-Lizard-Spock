@@ -121,9 +121,6 @@ header h2 span{
 	font-size: 250%;
 }
 
-.winner{
-	background: url("../assets/win.png") no-repeat;
-}
 /*********************************************/
 /************* Stats Section *************/
 /*********************************************/
@@ -174,5 +171,9 @@ header h2 span{
 	width: 30%;
 	display: inline-block;
 	vertical-align: top;
+	}
+
+	.winner{
+		background: url("../assets/win.png") no-repeat;
 	}
 }
